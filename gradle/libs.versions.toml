@@ -19,6 +19,7 @@ archTestVersion = "2.1.0"
 hilt = "2.50"
 hiltPlugin = "2.44.2"
 hiltNavigationCompose = "1.0.0"
+coil-version = "2.5.0"
 ksp="2.0.21-1.0.27"
 
 [libraries]
@@ -49,6 +50,7 @@ hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil-version" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(private val userRemoteDataSource: UserRemoteDataSource): UserRepository {
-    override suspend fun getListUser(currentTime: Long): Flow<DataState<List<UserEntity>>> = flow {
+    override suspend fun getListUser(): Flow<DataState<List<UserEntity>>> = flow {
         emitAll(userRemoteDataSource.getListUser())
     }
 

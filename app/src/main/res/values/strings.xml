@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">pcstest</string>
+    <string name="data_entry">Data entry : %1$s</string>
 </resources>

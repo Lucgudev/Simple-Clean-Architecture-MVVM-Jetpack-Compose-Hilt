@@ -5,5 +5,5 @@ import com.lucgu.pcstest.domain.entities.UserEntity
 import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
-    suspend fun getListUser(currentTime: Long): Flow<DataState<List<UserEntity>>>
+    suspend fun getListUser(): Flow<DataState<List<UserEntity>>>
 }
