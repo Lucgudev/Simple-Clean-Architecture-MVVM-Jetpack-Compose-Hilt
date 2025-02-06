@@ -7,13 +7,17 @@ plugins {
 
 android {
     namespace = "com.lucgu.network"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
@@ -23,6 +27,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "baseUrl","\"https://66b197c51ca8ad33d4f482c9.mockapi.io/\"" )
+        }
+        debug {
+            buildConfigField("String", "baseUrl","\"https://66b197c51ca8ad33d4f482c9.mockapi.io/\"" )
         }
     }
     compileOptions {
