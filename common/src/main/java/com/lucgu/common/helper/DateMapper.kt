@@ -1,4 +1,4 @@
-package com.lucgu.pcstest.helper
+package com.lucgu.common.helper
 
 import java.text.SimpleDateFormat
 import java.util.*

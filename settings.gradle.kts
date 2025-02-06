@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "pcstest"
 include(":app")
+include(":common")

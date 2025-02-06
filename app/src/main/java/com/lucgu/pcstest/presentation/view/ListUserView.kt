@@ -24,7 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.lucgu.pcstest.domain.entities.UserEntity
-import com.lucgu.pcstest.helper.DateTimeUtil
+import com.lucgu.common.helper.DateTimeUtil
 import coil.compose.AsyncImage
 import com.lucgu.pcstest.R
 
