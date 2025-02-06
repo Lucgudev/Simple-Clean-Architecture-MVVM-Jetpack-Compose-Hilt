@@ -1,5 +1,10 @@
 # Simple Clean Architecture MVVM with Jetpack Compose & Hilt
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+![App Screenshot](docs/readme_image_1.png)
+![App Screenshot](docs/readme_image_2.png)
+
 This project demonstrates the implementation of a simple Android app using Clean Architecture, MVVM, Jetpack Compose, and Dagger Hilt for dependency injection. It is organized into multiple modules (`app`, `common`, `network`) to showcase multi-module architecture.
 
 ## Features
