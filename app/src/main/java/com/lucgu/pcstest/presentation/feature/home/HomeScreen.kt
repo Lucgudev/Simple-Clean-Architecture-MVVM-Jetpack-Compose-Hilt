@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lucgu.pcstest.domain.entities.UserEntity
+import com.lucgu.pcstest.presentation.view.ErrorView
 import com.lucgu.pcstest.presentation.view.ListUserView
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,7 +52,10 @@ fun HomeScreen(
                 Content(
                     isLoading = viewState.isLoading,
                     data = viewState.listUser,
-                    errorMessage = ""
+                    errorMessage = viewState.errorMessage,
+                    onRetry = {
+                        viewModel.fetchListUser()
+                    }
                 )
             }
         }
@@ -63,6 +67,7 @@ private fun Content(
     isLoading: Boolean,
     data: List<UserEntity>,
     errorMessage: String,
+    onRetry: () -> Unit
 ) {
 
     if (isLoading) {
@@ -80,6 +85,8 @@ private fun Content(
             data = data,
         )
     } else if (errorMessage.isNotEmpty()) {
-        //TODO Handle Error
+        ErrorView(onRetry = {
+            onRetry()
+        })
     }
 }

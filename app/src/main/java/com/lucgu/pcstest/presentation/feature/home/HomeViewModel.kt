@@ -20,7 +20,7 @@ class HomeViewModel @Inject constructor(
             userRepository.getListUser().collect {
                 when(it) {
                     is DataState.Error -> {
-                        //setState { currentState.copy(isLoading = false, errorMessage = it.apiError?.message) }
+                        setState { currentState.copy(isLoading = false, errorMessage = it.apiError?.message ?: "General Error Message") }
                     }
                     is DataState.Loading -> {
                         setState { currentState.copy(isLoading = true) }
@@ -28,7 +28,8 @@ class HomeViewModel @Inject constructor(
                     is DataState.Success -> {
                         setState { currentState.copy(
                             isLoading = false,
-                            listUser = it.data
+                            listUser = it.data,
+                            errorMessage = "",
                         ) }
                     }
                 }
