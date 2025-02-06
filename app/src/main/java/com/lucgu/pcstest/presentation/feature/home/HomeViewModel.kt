@@ -7,6 +7,7 @@ import com.lucgu.pcstest.domain.repository.UserRepository
 import com.lucgu.pcstest.domain.viewstate.IViewEvent
 import com.lucgu.pcstest.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,16 +17,10 @@ class HomeViewModel @Inject constructor(
 ) : BaseViewModel<HomeViewState, HomeViewEvent>() {
 
     override fun createInitialState(): HomeViewState = HomeViewState()
-    override fun onTriggerEvent(event: HomeViewEvent) {
-        TODO("Not yet implemented")
-    }
-
-    init {
-        fetchListUser()
-    }
+    override fun onTriggerEvent(event: HomeViewEvent) {}
 
     fun fetchListUser() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             userRepository.getListUser().collect {
                 when (it) {
                     is DataState.Error -> {

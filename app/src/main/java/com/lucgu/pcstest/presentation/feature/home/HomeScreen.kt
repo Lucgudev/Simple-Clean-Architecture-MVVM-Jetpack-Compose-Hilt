@@ -14,6 +14,9 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,6 +37,17 @@ fun HomeScreen(
     navController: NavController
 ) {
     val viewState = viewModel.uiState.collectAsStateWithLifecycle().value
+
+    val hasFetched = rememberSaveable { mutableStateOf(false) }
+
+    // Trigger fetchListUser once when this composable is displayed
+    LaunchedEffect(Unit) {
+        if(!hasFetched.value) {
+            viewModel.fetchListUser()
+            hasFetched.value = true
+        }
+
+    }
 
     LaunchedEffect(viewModel.uiEvent) {
         viewModel.uiEvent.collect {

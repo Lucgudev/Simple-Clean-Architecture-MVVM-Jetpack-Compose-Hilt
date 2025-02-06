@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 
@@ -35,16 +34,5 @@ abstract class BaseViewModel<State : IViewState, Event : IViewEvent> : ViewModel
 
     protected fun setEvent(event: Event) {
         viewModelScope.launch { _uiEvent.emit(event) }
-    }
-
-    protected suspend fun <T> call(
-        callFlow: Flow<T>,
-        completionHandler: (collect: T) -> Unit = {}
-    ) {
-        callFlow
-            .catch { }
-            .collect {
-                completionHandler.invoke(it)
-            }
     }
 }
