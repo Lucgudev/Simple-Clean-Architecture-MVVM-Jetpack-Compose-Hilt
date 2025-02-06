@@ -5,6 +5,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.lucgu.pcstest.presentation.feature.detail.DetailScreen
 import com.lucgu.pcstest.presentation.feature.home.HomeScreen
 
 @Composable
@@ -13,7 +14,14 @@ fun AppNavGraph() {
     NavHost(navController = navController, startDestination = Route.HOME_ROUTE) {
         composable(Route.HOME_ROUTE) {
             HomeScreen(
-                hiltViewModel()
+                hiltViewModel(),
+                navController,
+            )
+        }
+        composable(Route.DETAIL_ROUTE,
+        ) {
+            DetailScreen(
+                navController
             )
         }
     }

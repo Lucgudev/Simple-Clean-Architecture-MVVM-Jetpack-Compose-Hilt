@@ -18,7 +18,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.lucgu.pcstest.domain.entities.UserEntity
+import com.lucgu.pcstest.presentation.feature.navigation.Route
 import com.lucgu.pcstest.presentation.view.ErrorView
 import com.lucgu.pcstest.presentation.view.ListUserView
 
@@ -27,11 +29,21 @@ import com.lucgu.pcstest.presentation.view.ListUserView
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel,
+    navController: NavController
 ) {
     val viewState = viewModel.uiState.collectAsStateWithLifecycle().value
 
-    LaunchedEffect(Unit) {
-        viewModel.fetchListUser()
+    LaunchedEffect(viewModel.uiEvent) {
+        viewModel.uiEvent.collect {
+            when (it) {
+                is HomeViewEvent.NavigateToDetail -> {
+                    navController.currentBackStackEntry?.savedStateHandle?.set("data", it.user)
+                    navController.navigate(Route.DETAIL_ROUTE) {
+                        restoreState = true
+                    }
+                }
+            }
+        }
     }
 
     Scaffold(
@@ -55,6 +67,9 @@ fun HomeScreen(
                     errorMessage = viewState.errorMessage,
                     onRetry = {
                         viewModel.fetchListUser()
+                    },
+                    onClickItem = {
+                        viewModel.navigateToDetail(it)
                     }
                 )
             }
@@ -67,7 +82,8 @@ private fun Content(
     isLoading: Boolean,
     data: List<UserEntity>,
     errorMessage: String,
-    onRetry: () -> Unit
+    onRetry: () -> Unit,
+    onClickItem: (UserEntity) -> Unit
 ) {
 
     if (isLoading) {
@@ -83,6 +99,9 @@ private fun Content(
     } else if (data.isNotEmpty()) {
         ListUserView(
             data = data,
+            onClickItem = {
+                onClickItem(it)
+            }
         )
     } else if (errorMessage.isNotEmpty()) {
         ErrorView(onRetry = {

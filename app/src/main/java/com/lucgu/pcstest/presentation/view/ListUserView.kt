@@ -1,6 +1,7 @@
 package com.lucgu.pcstest.presentation.view
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,7 +29,7 @@ import coil.compose.AsyncImage
 import com.lucgu.pcstest.R
 
 @Composable
-fun ListUserView(data: List<UserEntity>) {
+fun ListUserView(data: List<UserEntity>, onClickItem: (UserEntity) -> Unit) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(1),
         modifier = Modifier
@@ -40,7 +41,9 @@ fun ListUserView(data: List<UserEntity>) {
         items(data) { data ->
             Card(
                 colors = CardDefaults.cardColors(Color.White),
-                modifier = Modifier.padding(start = 4.dp, end = 4.dp, top = 4.dp, bottom = 4.dp),
+                modifier = Modifier.padding(start = 4.dp, end = 4.dp, top = 4.dp, bottom = 4.dp).clickable {
+                    onClickItem(data)
+                },
                 elevation = CardDefaults.cardElevation(
                     defaultElevation = 10.dp
                 ),
