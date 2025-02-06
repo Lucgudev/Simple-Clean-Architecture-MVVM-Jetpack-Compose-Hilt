@@ -1,5 +1,6 @@
 package com.lucgu.pcstest.di
 
+import com.google.gson.Gson
 import com.lucgu.pcstest.data.remote.services.ApiServices
 import com.lucgu.pcstest.data.remote.source.UserRemoteDataSource
 import com.lucgu.pcstest.data.remote.source.UserRemoteDataSourceImpl

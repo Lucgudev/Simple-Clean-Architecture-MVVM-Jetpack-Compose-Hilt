@@ -21,6 +21,7 @@ fun AppNavGraph() {
         composable(Route.DETAIL_ROUTE,
         ) {
             DetailScreen(
+                hiltViewModel(),
                 navController
             )
         }

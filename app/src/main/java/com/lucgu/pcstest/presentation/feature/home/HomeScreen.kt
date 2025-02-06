@@ -17,8 +17,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import com.lucgu.pcstest.R
 import com.lucgu.pcstest.domain.entities.UserEntity
 import com.lucgu.pcstest.presentation.feature.navigation.Route
 import com.lucgu.pcstest.presentation.view.ErrorView
@@ -50,7 +52,7 @@ fun HomeScreen(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             TopAppBar(
-                title = { Text(text = "List User", color = Color.Black) },
+                title = { Text(text = stringResource(R.string.list_user), color = Color.Black) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
             )
         },
